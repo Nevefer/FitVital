@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using FitVital.DAL.Entities;
+using System.Diagnostics.Metrics;
 
 namespace FitVital.DAL
 {
@@ -16,9 +17,17 @@ namespace FitVital.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Nutricionista>().HasIndex(c => c.Name).IsUnique();
+            //modelBuilder.Entity<Usuario>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<Cita>().HasIndex(c => c.Id).IsUnique();
         }
 
         #region Dbsets
+        public DbSet<Nutricionista> Nutricionistas { get; set; }
+
+        //public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Cita> Citas { get; set; }
+
         #endregion
     }
 

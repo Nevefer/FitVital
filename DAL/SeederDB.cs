@@ -23,13 +23,6 @@
             await _context.SaveChangesAsync();
         }
         #region Private methods
-        private async Task populateCountriesAsync()
-        {
-            if (!_context.Countries.Any())
-            {
-
-            }
-        }
         #endregion
     }
 }
