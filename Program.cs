@@ -13,6 +13,8 @@ builder.Services.AddControllers();
 // Esta linea de codigo me permite configurar la BD
 builder.Services.AddDbContext<DataBaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<INutricionistaService, NutricionistaService>();
+builder.Services.AddScoped<ICitaService, CitaService>();
 builder.Services.AddTransient<SeederDB>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -20,18 +22,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-SeederData();
 
-void SeederData()
-{
-    IServiceScopeFactory? scopedFactory = app.Services.GetService<IServiceScopeFactory>();
-
-    using (IServiceScope? scope = scopedFactory.CreateScope())
-    {
-        SeederDB? service = scope.ServiceProvider.GetService<SeederDB>();
-        service.SeederAsync().Wait();
-    }
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
