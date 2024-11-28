@@ -9,6 +9,10 @@ namespace FitVital.DAL.Entities
 
         [Display(Name = "ID Ejercicio")]
         public Guid IdEjercicio {  set; get; }
+        public Guid Name { get; set; }
+
+        public ICollection<Ejercicio>? Ejercicios { get; set; }
+        public ICollection<Usuario>? Usuarios { get; set; }
 
 
     }
