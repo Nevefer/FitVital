@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FitVital.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace FitVital.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -25,27 +25,12 @@ namespace FitVital.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Citas",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NutricionistaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NutricionistaName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -58,34 +43,22 @@ namespace FitVital.Migrations
                         principalTable: "Nutricionistas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Citas_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Citas_NutricionistaId_UsuarioId",
+                name: "IX_Citas_Id",
                 table: "Citas",
-                columns: new[] { "NutricionistaId", "UsuarioId" },
+                column: "Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Citas_UsuarioId",
+                name: "IX_Citas_NutricionistaId",
                 table: "Citas",
-                column: "UsuarioId");
+                column: "NutricionistaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Nutricionistas_Name",
                 table: "Nutricionistas",
-                column: "Name",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_Name",
-                table: "Usuarios",
                 column: "Name",
                 unique: true);
         }
@@ -97,9 +70,6 @@ namespace FitVital.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nutricionistas");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
         }
     }
 }

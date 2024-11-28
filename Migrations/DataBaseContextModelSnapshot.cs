@@ -37,6 +37,10 @@ namespace FitVital.Migrations
                     b.Property<Guid>("NutricionistaId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("NutricionistaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id")

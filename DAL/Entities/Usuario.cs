@@ -1,4 +1,4 @@
-﻿/*using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FitVital.DAL.Entities
 {
@@ -16,4 +16,3 @@ namespace FitVital.DAL.Entities
         public ICollection<Cita>? Citas { get; set; }
     }
 }
-*/
