@@ -20,13 +20,17 @@ namespace FitVital.DAL
             modelBuilder.Entity<Nutricionista>().HasIndex(c => c.Name).IsUnique();
             //modelBuilder.Entity<Usuario>().HasIndex(c => c.Name).IsUnique();
             modelBuilder.Entity<Cita>().HasIndex(c => c.Id).IsUnique();
+            modelBuilder.Entity<Usuario>().HasIndex(c => c.Id);
+
         }
 
         #region Dbsets
         public DbSet<Nutricionista> Nutricionistas { get; set; }
 
-        //public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Cita> Citas { get; set; }
+
+        public DbSet<Administrador> Administradors { get; set; }
 
         #endregion
     }
