@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitVital.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20241127220522_Initial")]
-    partial class Initial
+    [Migration("20241128010415_InitialBD")]
+    partial class InitialBD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,17 +81,12 @@ namespace FitVital.Migrations
             modelBuilder.Entity("FitVital.DAL.Entities.Cita", b =>
                 {
                     b.HasOne("FitVital.DAL.Entities.Nutricionista", "Nutricionista")
-                        .WithMany("Citas")
+                        .WithMany()
                         .HasForeignKey("NutricionistaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Nutricionista");
-                });
-
-            modelBuilder.Entity("FitVital.DAL.Entities.Nutricionista", b =>
-                {
-                    b.Navigation("Citas");
                 });
 #pragma warning restore 612, 618
         }

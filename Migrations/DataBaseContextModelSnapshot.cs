@@ -37,6 +37,10 @@ namespace FitVital.Migrations
                     b.Property<Guid>("NutricionistaId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("NutricionistaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
@@ -79,17 +83,12 @@ namespace FitVital.Migrations
             modelBuilder.Entity("FitVital.DAL.Entities.Cita", b =>
                 {
                     b.HasOne("FitVital.DAL.Entities.Nutricionista", "Nutricionista")
-                        .WithMany("Citas")
+                        .WithMany()
                         .HasForeignKey("NutricionistaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Nutricionista");
-                });
-
-            modelBuilder.Entity("FitVital.DAL.Entities.Nutricionista", b =>
-                {
-                    b.Navigation("Citas");
                 });
 #pragma warning restore 612, 618
         }

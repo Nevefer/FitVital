@@ -5,8 +5,8 @@ namespace FitVital.DAL.Entities
 {
     public class Cita : AuditBase
     {
-        [Display(Name = "Nutricionista")]
-        public Nutricionista? Nutricionista { get; set; }
+        //[Display(Name = "Nutricionista")]
+        //public Nutricionista? Nutricionista { get; set; }
         //FK Nutricionista
         [Display(Name = "Id Nutricionista")]
         public Guid NutricionistaId { get; set; }
