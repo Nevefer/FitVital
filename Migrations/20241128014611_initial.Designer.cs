@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitVital.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20241127214303_InitialDB")]
-    partial class InitialDB
+    [Migration("20241128014611_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,15 +39,16 @@ namespace FitVital.Migrations
                     b.Property<Guid>("NutricionistaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("NutricionistaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
-
-                    b.HasIndex("NutricionistaId", "UsuarioId")
+                    b.HasIndex("Id")
                         .IsUnique();
+
+                    b.HasIndex("NutricionistaId");
 
                     b.ToTable("Citas");
                 });
@@ -66,7 +67,8 @@ namespace FitVital.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("password")
                         .IsRequired()
@@ -80,34 +82,6 @@ namespace FitVital.Migrations
                     b.ToTable("Nutricionistas");
                 });
 
-            modelBuilder.Entity("FitVital.DAL.Entities.Usuario", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Usuarios");
-                });
-
             modelBuilder.Entity("FitVital.DAL.Entities.Cita", b =>
                 {
                     b.HasOne("FitVital.DAL.Entities.Nutricionista", "Nutricionista")
@@ -116,23 +90,10 @@ namespace FitVital.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FitVital.DAL.Entities.Usuario", "Usuario")
-                        .WithMany("Citas")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Nutricionista");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("FitVital.DAL.Entities.Nutricionista", b =>
-                {
-                    b.Navigation("Citas");
-                });
-
-            modelBuilder.Entity("FitVital.DAL.Entities.Usuario", b =>
                 {
                     b.Navigation("Citas");
                 });
