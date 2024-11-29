@@ -76,6 +76,14 @@ namespace FitVital.Controllers
 
             return Ok(DeletedEjercicio);
         }
+        public async Task<ActionResult<IEnumerable<Ejercicio>>> GetEjercicioAsync(Guid Id)
+        {
+            var ejercicio = await _ejercicios.GetEjercicioAsync(Id);
+
+            if (ejercicio == null) return NotFound();//Not Found = status code 404
+
+            return Ok(ejercicio);//Ok = Status code 200
+        }
     }
 }
 

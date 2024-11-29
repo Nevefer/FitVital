@@ -21,7 +21,7 @@ namespace FitVital.Domain.Services
             {
                 ejercicio.Id = Guid.NewGuid();
                 ejercicio.CreatedDate = DateTime.Now;
-                _context.Ejercicio.Add(ejercicio); //Metodo add permite crea objeto en el contexto de base de datos
+                _context.Ejercicios.Add(ejercicio); //Metodo add permite crea objeto en el contexto de base de datos
                 await _context.SaveChangesAsync(); //Guardar pais en tabla contry
                 return ejercicio;
             }
@@ -34,7 +34,7 @@ namespace FitVital.Domain.Services
         {
             try
             {
-                return await _context.Ejercicio.FirstOrDefaultAsync(c => c.Id == id); // Verfificar
+                return await _context.Ejercicios.FirstOrDefaultAsync(c => c.Id == id); // Verfificar
             }
             catch (DbUpdateException dbUdateException)
             {
@@ -48,7 +48,7 @@ namespace FitVital.Domain.Services
             {
                 
                 ejercicio.ModifiedDate = DateTime.Now;
-                _context.Ejercicio.Update(ejercicio);
+                _context.Ejercicios.Update(ejercicio);
                 await _context.SaveChangesAsync();
                 return ejercicio; 
             }
@@ -66,7 +66,7 @@ namespace FitVital.Domain.Services
                 {
                     return ejercicio;
                 }
-                _context.Ejercicio.Remove(ejercicio);
+                _context.Ejercicios.Remove(ejercicio);
                 await _context.SaveChangesAsync();
                 return ejercicio;
             }
@@ -75,23 +75,21 @@ namespace FitVital.Domain.Services
                 throw new Exception(dbUdateException.InnerException?.Message ?? dbUdateException.Message);
             }
         }
-
-        public Task<IEnumerable<Ejercicio>> GetEjercicioAsync()
+        public async Task<Ejercicio> GetEjercicioAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _context.Ejercicios.FirstOrDefaultAsync(c => c.Id == id); 
+            }
+            catch (DbUpdateException dbUdateException)
+            {
+                throw new Exception(dbUdateException.InnerException?.Message ?? dbUdateException.Message);
+            }
         }
 
-        Task<Ejercicio> IEjercicios.GetEjercicioByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
 
-        Task<Ejercicio> IEjercicios.EditEjercicioAsync(Ejercicio ejercicio)
-        {
-            throw new NotImplementedException();
-        }
 
-       
+
     }
 
 }
