@@ -1,5 +1,6 @@
 ﻿using FitVital.DAL.Entities;
 using FitVital.Domain.Interfaces;
+using FitVital.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitVital.Controllers
@@ -16,6 +17,14 @@ namespace FitVital.Controllers
         }
         [HttpGet, ActionName("Get")]
         [Route("GetById/{id}")]//Api/Usuario/get
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosAsync()
+        {
+            var Usuarios = await _usuarioService.GetUsuarioAsync();
+
+            if (Usuarios == null || !Usuarios.Any()) return NotFound();
+
+            return Ok(Usuarios);
+        }
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarioByIdAsync(Guid id)
         {
             var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
@@ -24,6 +33,8 @@ namespace FitVital.Controllers
 
             return Ok(usuario);//Ok = status code 200
         }
+
+
         [HttpPost, ActionName("Create")]
         [Route("Create")]
         public async Task<ActionResult<Usuario>> CreateUsuarioAsync(Usuario usuario)

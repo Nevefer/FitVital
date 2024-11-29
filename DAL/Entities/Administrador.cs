@@ -14,5 +14,9 @@ namespace FitVital.DAL.Entities
 
         public String password { get; set; }
 
+
+
+
+
     }
 }
