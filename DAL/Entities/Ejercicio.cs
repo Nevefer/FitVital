@@ -12,15 +12,15 @@ namespace FitVital.DAL.Entities
 
 
 
-        [Display(Name = "Administrador")]
-        public Administrador? Administrador {  set; get; }
+        //[Display(Name = "Administrador")]
+        //public Administrador? Administrador {  set; get; }
 
         //FK Administrador
         [Display(Name = "Id Administrador")]
         public Guid AdministradorId { get; set; }
 
-        [Display(Name = "Id EjercicioUsuario")]
-        public EjercicioUsuario? EjercicioUsuarios { set; get; }
+        //[Display(Name = "Id EjercicioUsuario")]
+        //public EjercicioUsuario? EjercicioUsuarios { set; get; }
 
         //FK EjercicioUsuario
         [Display(Name = "Id EjercicioUsuario")]

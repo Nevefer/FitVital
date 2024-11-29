@@ -14,8 +14,8 @@ namespace FitVital.DAL.Entities
 
         public String password { get; set; }
 
-        public ICollection<Usuario>? Usuarios { get; set; }
+        //public ICollection<Usuario>? Usuarios { get; set; }
 
-        public ICollection<Ejercicio>? Ejercicios { get; set; }
+        //public ICollection<Ejercicio>? Ejercicios { get; set; }
     }
 }
