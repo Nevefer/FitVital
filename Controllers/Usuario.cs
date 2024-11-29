@@ -16,7 +16,7 @@ namespace FitVital.Controllers
             usuarioService = usuarioService;
         }
         [HttpGet, ActionName("Get")]
-        [Route("GetById/{id}")]//Api/Usuario/get
+        [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosAsync()
         {
             var Usuarios = await _usuarioService.GetUsuarioAsync();
@@ -25,6 +25,8 @@ namespace FitVital.Controllers
 
             return Ok(Usuarios);
         }
+        [HttpGet, ActionName("Get")]
+        [Route("GetById/{id}")]//Api/Usuario/get
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarioByIdAsync(Guid id)
         {
             var usuario = await _usuarioService.GetUsuarioByIdAsync(id);

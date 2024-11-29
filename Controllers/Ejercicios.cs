@@ -17,7 +17,6 @@ namespace FitVital.Controllers
         }
         [HttpGet, ActionName("Get")]
         [Route("GetById/{id}")]//Api/Ejercicios/get
-
         public async Task<ActionResult<IEnumerable<Ejercicio>>> GetEjercicioByIdAsync(Guid Id)
         {
             var ejercicio = await _ejercicios.GetEjercicioByIdAsync(Id);
@@ -76,6 +75,8 @@ namespace FitVital.Controllers
 
             return Ok(DeletedEjercicio);
         }
+        [HttpGet, ActionName("Get")]
+        [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Ejercicio>>> GetEjercicioAsync(Guid Id)
         {
             var ejercicio = await _ejercicios.GetEjercicioAsync(Id);

@@ -13,7 +13,7 @@ namespace FitVital.DAL.Entities
 
 
         [Display(Name = "Usuario")]
-        public Usuario? Usuario { get; set; }
+        public Usuario Usuario { get; set; }
         //FK Usuario
         [Display(Name = "Id Usuario")]
         public Guid UsuarioId { get; set; }

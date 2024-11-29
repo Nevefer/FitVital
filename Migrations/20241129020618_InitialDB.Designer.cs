@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitVital.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20241129015649_InitialBD")]
-    partial class InitialBD
+    [Migration("20241129020618_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

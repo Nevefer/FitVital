@@ -19,7 +19,7 @@ builder.Services.AddScoped<IEjercicios, EjercicioService>();
 builder.Services.AddScoped<IAdministradorService, AdministradorService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
-builder.Services.AddTransient<SeederDB>();
+//builder.Services.AddTransient<SeederDB>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

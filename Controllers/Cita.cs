@@ -15,7 +15,7 @@ namespace FitVital.Controllers
             _citaService = citaService;
         }
         [HttpGet, ActionName("Get")]
-        [Route("GetById/{id}")]//Api/Nutricionistas/get
+        [Route("GetById/{id}")]//Api/Citas/get
         public async Task<ActionResult<IEnumerable<Cita>>> GetCitaByIdAsync(Guid id)
         {
             var cita = await _citaService.GetCitaByIdAsync(id);
