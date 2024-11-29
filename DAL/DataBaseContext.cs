@@ -28,7 +28,7 @@ namespace FitVital.DAL
             modelBuilder.Entity<EjercicioUsuario>().HasIndex(c => c.Id).IsUnique();
 
             modelBuilder.Entity<Administrador>().HasIndex(c => c.Id).IsUnique();
-
+            
         }
 
         #region Dbsets
