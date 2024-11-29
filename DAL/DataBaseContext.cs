@@ -18,14 +18,17 @@ namespace FitVital.DAL
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Nutricionista>().HasIndex(c => c.Name).IsUnique();
-            //modelBuilder.Entity<Usuario>().HasIndex(c => c.Name).IsUnique();
+
             modelBuilder.Entity<Cita>().HasIndex(c => c.Id).IsUnique();
-<<<<<<< HEAD
+
             modelBuilder.Entity<Usuario>().HasIndex(c => c.Id);
 
-=======
-            modelBuilder.Entity<Ejercicio>().HasIndex(c => c.Id).IsUnique(); 
->>>>>>> 0440a048020652c5521d04bcb08f8b5b10eea01e
+            modelBuilder.Entity<Ejercicio>().HasIndex(c => c.Id).IsUnique();
+
+            modelBuilder.Entity<EjercicioUsuario>().HasIndex(c => c.Id).IsUnique();
+
+            modelBuilder.Entity<Administrador>().HasIndex(c => c.Id).IsUnique();
+
         }
 
         #region Dbsets
@@ -34,11 +37,10 @@ namespace FitVital.DAL
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Cita> Citas { get; set; }
 
-<<<<<<< HEAD
         public DbSet<Administrador> Administradors { get; set; }
-=======
-        public DbSet<Ejercicio> Ejercicio { get; set; } 
->>>>>>> 0440a048020652c5521d04bcb08f8b5b10eea01e
+        public DbSet<Ejercicio> Ejercicios { get; set; }
+
+        public DbSet<EjercicioUsuario> EjercicioUsuarios { get; set; }
 
         #endregion
     }

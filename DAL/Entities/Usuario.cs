@@ -8,38 +8,20 @@ namespace FitVital.DAL.Entities
         [Required(ErrorMessage = "El campo {0} es olbigatorio")] // Obligatorio
         public String Name { get; set; }
 
-        [Display(Name = "Contraseña")] // Identificar Nombre 
-        [Required(ErrorMessage = "El campo {0} es olbigatorio")] // Obligatorio
+        [Display(Name = "Administrador")]
+        public Administrador? Administrador { set; get; }
 
-        public String password { get; set; }
+        //FK Administrador
+        [Display(Name = "Id Administrador")]
+        public Guid AdministradorId { get; set; }
 
         public ICollection<Cita>? Citas { get; set; }
+
+        [Display(Name = "Id EjercicioUsuario")]
+        public EjercicioUsuario? EjercicioUsuarios { set; get; }
+
+        //FK EjercicioUsuario
+        [Display(Name = "Id EjercicioUsuario")]
+        public Guid EjercicioUsuarioId { get; set; }
     }
 }
-<<<<<<< HEAD
-*/
-
-using System.ComponentModel.DataAnnotations;
-
-namespace FitVital.DAL.Entities
-{
-    public class Usuario : AuditBase
-    {
-        [Display(Name = "Nombre")] // Identificar Nombre 
-        
-        [MaxLength(50, ErrorMessage = "El campo {0} dbe tener maximo {1} caracteres")] //Longitud MAxima
-        public String Name { get; set; }
-
-        
-    }
-}
-    
-
-
-        // Identificar Nombre 
-
-        //public String password { get; set; }
-
-        //public ICollection<Cita>? Citas { get; set; }
-=======
->>>>>>> 0440a048020652c5521d04bcb08f8b5b10eea01e

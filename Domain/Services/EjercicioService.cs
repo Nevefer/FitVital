@@ -75,21 +75,17 @@ namespace FitVital.Domain.Services
                 throw new Exception(dbUdateException.InnerException?.Message ?? dbUdateException.Message);
             }
         }
-        public async Task<Ejercicio> GetEjercicioAsync(Guid id)
+        public async Task<IEnumerable<Ejercicio>> GetEjercicioAsync(Guid id)
         {
             try
             {
-                return await _context.Ejercicios.FirstOrDefaultAsync(c => c.Id == id); 
+                return await _context.Ejercicios.ToListAsync();
             }
             catch (DbUpdateException dbUdateException)
             {
                 throw new Exception(dbUdateException.InnerException?.Message ?? dbUdateException.Message);
             }
         }
-
-
-
-
     }
 
 }
