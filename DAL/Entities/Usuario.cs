@@ -8,12 +8,20 @@ namespace FitVital.DAL.Entities
         [Required(ErrorMessage = "El campo {0} es olbigatorio")] // Obligatorio
         public String Name { get; set; }
 
-        [Display(Name = "Contraseña")] // Identificar Nombre 
-        [Required(ErrorMessage = "El campo {0} es olbigatorio")] // Obligatorio
+        [Display(Name = "Administrador")]
+        public Administrador? Administrador { set; get; }
 
-        public String password { get; set; }
+        //FK Administrador
+        [Display(Name = "Id Administrador")]
+        public Guid AdministradorId { get; set; }
 
         public ICollection<Cita>? Citas { get; set; }
-    }
 
+        [Display(Name = "Id EjercicioUsuario")]
+        public EjercicioUsuario? EjercicioUsuarios { set; get; }
+
+        //FK EjercicioUsuario
+        [Display(Name = "Id EjercicioUsuario")]
+        public Guid EjercicioUsuarioId { get; set; }
+    }
 }

@@ -10,18 +10,21 @@ namespace FitVital.DAL.Entities
         public string Name { get; set; }
         public string Type { get; set; }
 
-        [Display(Name = " Id Ejercicio")]
-
-        public Guid IdEjercicio { get; set; }
-
-        [Display(Name = "Ejercicio")]
-        public Ejercicio? ejercicio {  set; get; }
-
-        public ICollection<EjercicioUsuario>? ejercicioUsuarios { get; set; }
-
-        
 
 
-        
+        [Display(Name = "Administrador")]
+        public Administrador? Administrador {  set; get; }
+
+        //FK Administrador
+        [Display(Name = "Id Administrador")]
+        public Guid AdministradorId { get; set; }
+
+        [Display(Name = "Id EjercicioUsuario")]
+        public EjercicioUsuario? EjercicioUsuarios { set; get; }
+
+        //FK EjercicioUsuario
+        [Display(Name = "Id EjercicioUsuario")]
+        public Guid EjercicioUsuarioId { get; set; }
+
     }
 }

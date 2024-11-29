@@ -14,6 +14,6 @@ namespace FitVital.DAL.Entities
 
         public String password { get; set; }
 
-        //public ICollection<Cita>? Citas { get; set; }
+        public ICollection<Cita>? Citas { get; set; }
     }
 }
